@@ -2,32 +2,19 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  //const allowedOrigins = ['https://your-flutter-web-app.com'];
+  const email = process.env.EMAIL;
+  const userPassword = process.env.USER_PASSWORD;
 
-  //if (!allowedOrigins.includes(req.headers.origin)) {
-  //  res.status(403).send('Forbidden');
-  //  return;
-  //}
-
-  const email = process.env.email;
-  const userPassword = process.env.userPassword;
+  const auth = Buffer.from(`${email}:${userPassword}`).toString('base64');
 
   try {
-    const response = await axios.post('https://apify.epayco.co/login/mail', {
-      email: email,
-      password: userPassword
+    const response = await axios.post('https://apify.epayco.co/login/mail', {}, {
+      headers: { Authorization: `Basic ${auth}` },
     });
 
     // Send only the necessary data to the client
     res.status(200).send({ token: response.data.token });
   } catch (error) {
-    res.status(500).json({ error: 'Error logging in', details: error.message });
+    res.status(500).send('Error logging in');
   }
 };
-
-// module.exports = (req, res) => {
-
-//   res.status(200).json({ message: 'Hello world' });
-
-// }
-
