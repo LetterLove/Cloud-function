@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   const userPassword = process.env.USER_PASSWORD;
 
   try {
-    const response = await axios.post('https://apify.epayco.co/login', {
+    const response = await axios.post('https://apify.epayco.co/login/mail', {
       email: email,
       password: userPassword
     });
