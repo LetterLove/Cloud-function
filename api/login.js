@@ -3,12 +3,12 @@ const axios = require('axios');
 
 module.exports = async (req, res) => {
 
-  const allowedOrigins = ['http://www.website1.com'];
-  const { origin } = req.headers;
+  //const allowedOrigins = ['http://www.website1.com'];
+  //const { origin } = req.headers;
 
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
+  //if (allowedOrigins.includes(origin)) {
+  //  res.setHeader('Access-Control-Allow-Origin', origin);
+  //}
 
   const email = process.env.email;
   const userPassword = process.env.userPassword;
