@@ -2,8 +2,8 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  const email = process.env.EMAIL;
-  const userPassword = process.env.USER_PASSWORD;
+  const email = process.env.email;
+  const userPassword = process.env.userPassword;
 
   const auth = Buffer.from(`${email}:${userPassword}`).toString('base64');
 
