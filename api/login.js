@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
   //  return;
   //}
 
-  const email = process.env.EMAIL;
-  const userPassword = process.env.USER_PASSWORD;
+  const email = process.env.email;
+  const userPassword = process.env.userPassword;
 
   try {
     const response = await axios.post('https://apify.epayco.co/login/mail', {
