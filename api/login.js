@@ -1,30 +1,33 @@
-// // api/login.js
-// module.exports = async (res) => {
-//     const email = process.env.EMAIL;
-//     const userPassword = process.env.USER_PASSWORD;
-  
-//     const url = 'https://ify.epayco.co/login/mail';
-//     const basicAuth = 'Basic ' + Buffer.from(email + ':' + userPassword).toString('base64');
-  
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       headers: {
-//         'Authorization': basicAuth,
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         email: email,
-//         password: userPassword,
-//       })
-//     });
-  
-//     const data = await response.json();
-  
-//     res.status(200).json(data);
-//   };
+// api/login.js
+const axios = require('axios');
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
+  //const allowedOrigins = ['https://your-flutter-web-app.com'];
 
-  res.status(200).json({ message: 'Hello world' });
+  //if (!allowedOrigins.includes(req.headers.origin)) {
+  //  res.status(403).send('Forbidden');
+  //  return;
+  //}
 
-}
+  const email = process.env.EMAIL;
+  const userPassword = process.env.USER_PASSWORD;
+
+  try {
+    const response = await axios.post('https://epayco-api-url/login', {
+      email: email,
+      password: userPassword
+    });
+
+    // Send only the necessary data to the client
+    res.status(200).send({ token: response.data.token });
+  } catch (error) {
+    res.status(500).send('Error logging in');
+  }
+};
+
+// module.exports = (req, res) => {
+
+//   res.status(200).json({ message: 'Hello world' });
+
+// }
+
