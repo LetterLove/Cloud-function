@@ -4,7 +4,7 @@ const axios = require('axios');
 module.exports = async (req, res) => {
 
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', 'https://letterlove.github.io/Demostracion/');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
