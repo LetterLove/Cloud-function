@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     // Send only the necessary data to the client
     res.status(200).send({ token: response.data.token });
   } catch (error) {
-    res.status(500).send('Error logging in');
+    res.status(500).json({ error: 'Error logging in', details: error.message });
   }
 };
 
